@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Link to='/'>首页</Link>
+        <Link to='/'>首页1</Link>
         <Link to='/about'>关于</Link>
         <Link to='/category'>分类</Link>
       </div>
