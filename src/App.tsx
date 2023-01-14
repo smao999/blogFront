@@ -1,23 +1,13 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import Home from './views/home'
-import Category from './views/category'
-import About from './views/about'
-import Notfund from './views/Notfund'
+import { useRoutes } from 'react-router-dom'
+import syncRouter from './router'
 
 function App() {
+  const element = useRoutes(syncRouter)
+  // https://www.jq22.com/yanshi22947
 
   return (
     <div className="App">
-      <div>
-        <Link to='/'>首页1</Link>
-        <Link to='/about'>关于</Link>
-        <Link to='/category'>分类</Link>
-      </div>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/category' element={<Category />} />
-      </Routes>
+      {element}
     </div>
   )
 }
