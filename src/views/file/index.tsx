@@ -14,8 +14,6 @@ const File = memo(() => {
       })
       cur += size
     }
-    console.log('chunkList', chunkList)
-    
   }
 
   return (
