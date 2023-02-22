@@ -3,11 +3,16 @@ import Home from '../views/home'
 import About from '../views/about'
 import Category from '../views/category'
 import Notfund from '../views/Notfund'
+import File from '../views/file'
 
 const syncRouter = [
   {
     path: '/home',
     element: <Home/>
+  },
+  {
+    path: '/file',
+    element: <File/>
   },
   {
     path: '/about',
@@ -23,7 +28,7 @@ const syncRouter = [
   },
   {
     path: '/',
-    element: <Navigate to='/home' />
+    element: <Navigate to='/file' />
   }
 ] 
 
