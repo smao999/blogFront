@@ -21,13 +21,33 @@ const Home = memo(() => {
     }
   }
 
+  const nav = () => {
+    return [
+      {name: '首页', path: '/'},
+      {name: '音乐', path: '/music'},
+      {name: '分类', path: '/category'},
+      {name: '文件', path: '/file'},
+    ]
+  }
+
   return (
     <div>
       <div className={(isAnimation ? 'header-icon1 icon-click' : iconClassName)} onClick={handleChangeIcon}>
         <span></span><span></span><span></span>
       </div>
       <div className={navClassName}>
-        <div className='nav'></div>
+        <div className='nav'>
+          <div className={'w-[140px] h-[500px] absolute top-[170px] right-0'}>
+            {
+              nav().map(item => {
+                return (
+                  <div className={'h-[60px] leading-[60px] text-[18px] text-slate-800 cursor-pointer hover:text-blue-400'}
+                    onClick={() => navigate(item.path)}>{item.name}</div>
+                )
+              })
+            }
+          </div>
+        </div>
       </div>
       <div className='home-banner'>
         <div className='banner-text'>
