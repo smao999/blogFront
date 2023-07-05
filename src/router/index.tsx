@@ -1,5 +1,6 @@
 import { RouteObject } from 'react-router-dom'
 import { lazy, Suspense, LazyExoticComponent } from 'react'
+import { Spin } from 'antd'
 
 namespace SyncRoute{
   export type Routes = {
@@ -13,6 +14,10 @@ const routerTable: SyncRoute.Routes[] = [
   {
     path: '/home',
     element: lazy(() => import('@/views/home'))
+  },
+  {
+    path: '/file',
+    element: lazy(() => import('@/views/file'))
   },
   {
     path: '/about',
@@ -37,7 +42,7 @@ const syncRouter = (routerTable: SyncRoute.Routes[]): RouteObject[] => {
     return {
       path: route.path,
       element: (
-        <Suspense fallback={<div>加载中。。。</div>}>
+        <Suspense fallback={<Spin size="large"/>}>
           <route.element />
         </Suspense>
       ),

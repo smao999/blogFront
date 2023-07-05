@@ -20,6 +20,8 @@ const File = memo(() => {
     <div>
       <input type='file' onChange={e => getFiles(e)}></input>
       <Button type='primary'>上传</Button>
+      <div className={'w-500 h-500 bg-blue-400 border-r-20 border-e-2 border-green-600'}>123</div>
+      <div className={'w-[500px] h-[300px] bg-slate-500 ml-[30px] rounded-[15px]'}></div>
     </div>
   )
 })
