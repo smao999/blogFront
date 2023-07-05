@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './index.scss'
 
 const Home = memo(() => {
+  // react-router 6 中使用这个hook代替history.push,需要使用replace的话配置{replace:true}
   const navigate = useNavigate()
 
   return (

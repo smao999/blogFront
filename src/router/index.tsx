@@ -1,30 +1,49 @@
-import { Navigate } from 'react-router-dom'
-import Home from '../views/home'
-import About from '../views/about'
-import Category from '../views/category'
-import Notfund from '../views/Notfund'
+import { RouteObject } from 'react-router-dom'
+import { lazy, Suspense, LazyExoticComponent } from 'react'
 
-const syncRouter = [
+namespace SyncRoute{
+  export type Routes = {
+    path: string,
+    element: LazyExoticComponent<React.MemoExoticComponent<() => JSX.Element>>,
+    children?: Routes[]
+  }
+}
+
+const routerTable: SyncRoute.Routes[] = [
   {
     path: '/home',
-    element: <Home/>
+    element: lazy(() => import('@/views/home'))
   },
   {
     path: '/about',
-    element: <About/>
+    element: lazy(() => import('@/views/about'))
   },
   {
     path: '/category',
-    element: <Category/>
+    element: lazy(() => import('@/views/category'))
   },
   {
     path: '*',
-    element: <Notfund/>
+    element: lazy(() => import('@/views/Notfund'))
   },
   {
     path: '/',
-    element: <Navigate to='/home' />
+    element: lazy(() => import('@/views/home'))
   }
-] 
+]
 
-export default syncRouter
+const syncRouter = (routerTable: SyncRoute.Routes[]): RouteObject[] => {
+  return routerTable.map(route => {
+    return {
+      path: route.path,
+      element: (
+        <Suspense fallback={<div>加载中。。。</div>}>
+          <route.element />
+        </Suspense>
+      ),
+      children: route.children && syncRouter(route.children)
+    }
+  })
+}
+
+export default syncRouter(routerTable)

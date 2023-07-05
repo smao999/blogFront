@@ -1,8 +1,16 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 
 const Category = memo(() => {
+  const [num, setNum] = useState(() => {
+    console.log('111');
+    return 2
+  })
+  const demo = () => {
+    setNum(3)
+  }
+  
   return (
-    <div> Category</div>
+    <div><>{num}</><p onClick={demo}>Category</p></div>
   )
 })
 
