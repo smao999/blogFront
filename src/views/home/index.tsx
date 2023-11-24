@@ -14,7 +14,7 @@ const Home: FunctionComponent<IHomeProps> = props => {
   const handleChangeIcon = () => {
     setIsAnimation(!isAnimation)
     if(iconClassName !== 'header-icon icon-out') {
-      setIconClassName('header-icon icon-out')
+      setIconClassName('header-icon icon-out');
     }
     if(isAnimation) {
       setNavClassName('rNav')
