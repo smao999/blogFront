@@ -1,8 +1,10 @@
-import React, { memo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import {FunctionComponent, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import './index.scss'
 
-const Home = memo(() => {
+interface IHomeProps {}
+
+const Home: FunctionComponent<IHomeProps> = props => {
   // react-router 6 中使用这个hook代替history.push,需要使用replace的话配置{replace:true}
   const navigate = useNavigate()
   const [isAnimation, setIsAnimation] = useState(false)
@@ -31,35 +33,35 @@ const Home = memo(() => {
   }
 
   return (
-    <div>
-      <div className={(isAnimation ? 'header-icon1 icon-click' : iconClassName)} onClick={handleChangeIcon}>
-        <span></span><span></span><span></span>
-      </div>
-      <div className={navClassName}>
-        <div className='nav'>
-          <div className={'w-[140px] h-[500px] absolute top-[170px] right-0'}>
-            {
-              nav().map(item => {
-                return (
-                  <div className={'h-[60px] leading-[60px] text-[18px] text-slate-800 cursor-pointer hover:text-blue-400'}
-                    onClick={() => navigate(item.path)}>{item.name}</div>
-                )
-              })
-            }
+      <div>
+        <div className={(isAnimation ? 'header-icon1 icon-click' : iconClassName)} onClick={handleChangeIcon}>
+          <span></span><span></span><span></span>
+        </div>
+        <div className={navClassName}>
+          <div className='nav'>
+            <div className={'w-[140px] h-[500px] absolute top-[170px] right-0'}>
+              {
+                nav().map(item => {
+                  return (
+                      <div className={'h-[60px] leading-[60px] text-[18px] text-slate-800 cursor-pointer hover:text-blue-400'}
+                           onClick={() => navigate(item.path)}>{item.name}</div>
+                  )
+                })
+              }
+            </div>
           </div>
         </div>
-      </div>
-      <div className='home-banner'>
-        <div className='banner-text'>
-          <span>XQS-Blog</span>
-          {/* 每一个不曾起舞的日子，都是对生命的辜负 */}
-          <p>且视他人之疑目如盏盏鬼火，大胆地去走你的夜路</p>
-          <div><button onClick={() => navigate('/category')}>Enter Blog</button></div>
+        <div className='home-banner'>
+          <div className='banner-text'>
+            <span>XQS-Blog</span>
+            {/* 每一个不曾起舞的日子，都是对生命的辜负 */}
+            <p>且视他人之疑目如盏盏鬼火，大胆地去走你的夜路</p>
+            <div><button onClick={() => navigate('/category')}>Enter Blog</button></div>
+          </div>
         </div>
+        <div className='content'></div>
       </div>
-      <div className='content'></div>
-    </div>
   )
-})
+}
 
 export default Home
