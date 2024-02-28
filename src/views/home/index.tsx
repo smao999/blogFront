@@ -66,6 +66,9 @@ const Home: FunctionComponent<IHomeProps> = () => {
             <Button onClick={() => setThemeType('LightTheme')}>白色</Button>
             <Button onClick={() => setThemeType('BlueTheme')}>蓝色</Button>
         </div>
+        <div className={'text-center w-[100%]'}>
+            <a href="https://beian.miit.gov.cn/" target="_blank">蜀ICP备2024047297号-1</a>
+        </div>
       </div>
   )
 }

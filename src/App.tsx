@@ -3,6 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import routes from "@/router";
 import store from "@/store";
 import {changeTheme} from "@/utils/changeTheme";
+import SuspenseLoading from "@/components/SuspenseLoading";
 
 function App() {
     const Route = createBrowserRouter(routes);
@@ -13,7 +14,7 @@ function App() {
     }, [themeType]);
 
   return (
-    <Suspense fallback={'加载中'}>
+    <Suspense fallback={<SuspenseLoading/>}>
         <RouterProvider router={Route}/>
     </Suspense>
   )
