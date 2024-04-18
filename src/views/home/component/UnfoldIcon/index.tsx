@@ -27,7 +27,7 @@ const UnfoldIcon: FC<IUnfoldIcon> = props => {
     const nav = () => {
         return [
             {name: '首页', path: '/'},
-            {name: '音乐', path: '/music'},
+            {name: '富文本', path: '/about'},
             {name: '分类', path: '/category'},
             {name: '文件', path: '/file'},
         ]
@@ -44,7 +44,7 @@ const UnfoldIcon: FC<IUnfoldIcon> = props => {
                       {
                           nav().map(item => {
                               return (
-                                  <div className={'h-[60px] leading-[60px] text-[18px] text-slate-800 cursor-pointer hover:text-blue-400'}
+                                  <div key={item.path} className={'h-[60px] leading-[60px] text-[18px] text-slate-800 cursor-pointer hover:text-blue-400'}
                                        onClick={() => navigate(item.path)}>{item.name}</div>
                               )
                           })

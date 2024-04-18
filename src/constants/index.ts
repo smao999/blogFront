@@ -1,4 +1,4 @@
-// 常量
+// 主题颜色配置
 export const themeEnum = {
     'LightTheme': {
         '--bg-color': 'rgb(204,255,255)',

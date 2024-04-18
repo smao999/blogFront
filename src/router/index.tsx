@@ -1,8 +1,12 @@
 import {lazy} from "react";
 import {Navigate, RouteObject} from "react-router-dom";
 
+import HomeLayout from "@/layout";
+
 const Home = lazy(() => import('@/views/home'));
 const Category = lazy(() => import('@/views/category'));
+const About = lazy(() => import('@/views/about'))
+const Files = lazy(() => import('@/views/file'))
 
 const routes:Array<RouteObject> = [
     {
@@ -10,12 +14,26 @@ const routes:Array<RouteObject> = [
         element: <Navigate to={'home'} replace />
     },
     {
-        path: '/home',
-        element: <Home/>
+        path:'/home',
+        element: <Home />
     },
     {
-        path: '/category',
-        element: <Category/>
+        path: '/file',
+        element: <Files />
+    },
+    {
+        path:'/',
+        element: <HomeLayout/>,
+        children: [
+            {
+                path: '/category',
+                element: <Category/>
+            },
+            {
+                path: '/about',
+                element: <About />
+            }
+        ]
     },
     {
         path: '*',

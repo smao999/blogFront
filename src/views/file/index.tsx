@@ -1,28 +1,49 @@
-import React, { memo, useState } from 'react'
-import { Button } from 'antd'
+import React, {memo, useEffect, useState} from 'react'
+import {Button, Form, Input, Select} from 'antd'
+import RichEditor from "@/components/RichEditor";
+import axios from "axios";
 
 const File = memo(() => {
-  const [files, setFiles] = useState<any>()
-
-  const getFiles = (e: any) => {
-    let size = 4 * 1024 * 1024
-    let file = e.target.files[0]
-    let chunkList = []
-    let cur = 0
-    while (cur < file.size) {
-      chunkList.push({
-        file: file.slice(cur, cur + size)
-      })
-      cur += size
+    const [form] = Form.useForm();
+    const [category, setCategory] = useState([]);
+    const service = axios.create({
+        baseURL: '/api',
+        timeout: 5000
+    })
+    const submit = () => {
+        form.validateFields().then(res => {
+            service.post('/blog/add', {...res}).then(res => {
+                console.log(res)
+            })
+        })
     }
-  }
+
+    useEffect(() => {
+        service.get('/blog/category').then(res => {
+            setCategory(res?.data || [])
+        })
+    }, []);
 
   return (
-    <div>
-      <input type='file' onChange={e => getFiles(e)}></input>
-      <Button type='primary'>上传</Button>
-      <div className={'w-500 h-500 bg-blue-400 border-r-20 border-e-2 border-green-600'}>123</div>
-      <div className={'w-[500px] h-[300px] bg-slate-500 ml-[30px] rounded-[15px]'}></div>
+    <div className={'p-6 h-screen pb-0 pt-0 !overflow-y-hidden'}>
+        <Form form={form}>
+            <div className={'flex gap-4 justify-between'}>
+                <Form.Item className={'w-[500px]'} required name="title">
+                    <Input placeholder={"请输入文章标题"}/>
+                </Form.Item>
+                <Form.Item className={'w-[280px]'} required name="categorys">
+                    <Select
+                      mode="multiple"
+                      placeholder={'选择分类'}
+                      options={category?.map((item:any) => ({value: item.id, label: item.name}))}
+                    />
+                </Form.Item>
+                <Button type="primary" onClick={submit}>发布</Button>
+            </div>
+            <Form.Item className={'!mb-0'} required name="content">
+                <RichEditor height={'calc(100vh - 80px)'} />
+            </Form.Item>
+        </Form>
     </div>
   )
 })

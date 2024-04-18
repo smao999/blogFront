@@ -1,10 +1,12 @@
 import React, { memo, useState } from 'react'
+import MacDocker from "@/components/Docker";
+
 
 const Category = memo(() => {
   
   return (
     <div>
-      <div className={'h-[70px] w-screen bg-slate-500'}></div>
+      <MacDocker/>
     </div>
   )
 })

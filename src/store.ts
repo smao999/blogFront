@@ -5,7 +5,7 @@ import {themeEnum} from "@/constants";
 
 interface IStore {
     themeType: keyof typeof themeEnum; // 主题类型
-    setThemeType: (key:keyof typeof themeEnum) => void // 设置主题
+    setThemeType: (key:keyof typeof themeEnum) => void; // 设置主题
 }
 
 const store = create<IStore>()(

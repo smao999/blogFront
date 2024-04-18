@@ -1,5 +1,6 @@
 import {Suspense, useEffect} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import { StyleProvider } from '@ant-design/cssinjs';
 import routes from "@/router";
 import store from "@/store";
 import {changeTheme} from "@/utils/changeTheme";
@@ -15,7 +16,9 @@ function App() {
 
   return (
     <Suspense fallback={<SuspenseLoading/>}>
-        <RouterProvider router={Route}/>
+        <StyleProvider hashPriority="high">
+            <RouterProvider router={Route}/>
+        </StyleProvider>
     </Suspense>
   )
 }
